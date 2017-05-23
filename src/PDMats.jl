@@ -45,10 +45,11 @@ module PDMats
 
     @compat abstract type AbstractPDMat{T<:Real} <: AbstractMatrix{T<:Real} end
 
-    import Base:size, getindex
+    import Base:size, getindex, chol
     size{T<:AbstractPDMat}(p::T) = size(full(p))
     getindex{T<:AbstractPDMat}(p::T, i::Int) = full(p)[i]
     getindex{T<:AbstractPDMat}(p::T, I::Vararg{Int, 2}) = getindex(full(p), I...)
+    chol{T<:AbstractPDMat}(p::T) = p.chol
 
     # source files
 
